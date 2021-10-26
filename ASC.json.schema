@@ -1,0 +1,473 @@
+{
+  "title": "Service Users",
+  "description": "Contains all of the information related to service users",
+  "examples": [{}],
+  "type": "object",
+  "required": [],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique ID of user"
+    },
+    "createdOn": {
+      "description": "Date client added to system",
+      "type": "number"
+    },
+    "acom": {
+      "title": "Accommodation",
+      "description": "Information on client's accommodation",
+      "type": "object",
+      "properties": {
+        "address": {
+          "title": "Address",
+          "type": "object",
+          "description": "Address Details"
+        },
+        "location": {
+          "title": "Geolocation",
+          "type": "object",
+          "description": "Geojson Location",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Point"]
+            },
+            "coordinates": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "number"
+              }
+            },
+            "bbox": {
+              "type": "array",
+              "minItems": 4,
+              "items": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "propertyType": {
+          "title": "Property Type",
+          "description": "The type of accomodation",
+          "examples": ["Owned", "Rented", "Parents", "Housing Association"],
+          "type": "string"
+        }
+      }
+    },
+    "bio": {
+      "title": "Biography",
+      "description": "Client's biographical information",
+      "type": "object",
+      "properties": {
+        "dob": {
+          "title": "DoB",
+          "description": "Client's date of birth",
+          "type": "number"
+        },
+        "dod": {
+          "title": "DoD",
+          "description": "Client's date of death",
+          "type": "number"
+        },
+        "gender": {
+          "title": "Gender",
+          "description": "Client's gender",
+          "enum": ["female", "male"],
+          "type": "string"
+        },
+        "nhsNumber": {
+          "title": "NHS Number",
+          "description": "Client's NHS number",
+          "type": "string"
+        },
+        "ethnicity": {
+          "title": "Ethnicity",
+          "description": "Client's ethnicity",
+          "type": "string"
+        },
+        "gpSurgery": {
+          "title": "GP Surgery",
+          "description": "Client's GP Surgery",
+          "type": "string"
+        }
+      }
+    },
+    "referrals": {
+      "title": "Referrals",
+      "type": "array",
+      "description": "Referrals associated with client",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Referral ID",
+            "description": "Unique ID for this referral",
+            "type": "string"
+          },
+          "openedOn": {
+            "title": "Opened on",
+            "description": "Date referral was opened",
+            "type": "number"
+          },
+          "closedOn": {
+            "title": "Closed on",
+            "description": "Date referral was closed",
+            "type": "number"
+          },
+          "reason": {
+            "title": "Referral reason",
+            "description": "Reason for referral",
+            "examples": ["Mental Health", "Enquiry"],
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "description": "Current status of referral",
+            "type": "string"
+          },
+          "method": {
+            "title": "Referral method",
+            "description": "The method used to initiate the referral",
+            "examples": ["Phone", "Email"],
+            "type": "string"
+          },
+          "closureReason": {
+            "title": "Closure reason",
+            "description": "Reason for the closure of the referral",
+            "type": "string"
+          },
+          "source": {
+            "title": "Referral source",
+            "description": "The source of the referral",
+            "examples": ["Relative", "Nurse", "Police"],
+            "type": "string"
+          },
+          "owner": {
+            "title": "Owner worker",
+            "description": "The identity of the assigned team member",
+            "type": "string"
+          },
+          "team": {
+            "title": "Team",
+            "description": "The identity of the team assigned"
+          },
+          "notes": {
+            "title": "Referral notes",
+            "description": "Free text notes on referral",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "assessments": {
+      "title": "Assessments",
+      "type": "array",
+      "description": "Assessments associated with client",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Assessment ID",
+            "description": "Unique ID for this assessment",
+            "type": "string"
+          },
+          "createdOn": {
+            "title": "Created on",
+            "description": "Date assessment was created",
+            "type": "number"
+          },
+          "completedOn": {
+            "title": "Completed on",
+            "description": "Date assessment was completed",
+            "type": "number"
+          },
+          "closedOn": {
+            "title": "Closed on",
+            "description": "Date assessment was closed",
+            "type": "number"
+          },
+          "owner": {
+            "title": "Owner",
+            "description": "The identity of the assigned team member",
+            "type": "string"
+          },
+          "team": {
+            "title": "Team",
+            "description": "The identity of the team assigned"
+          },
+          "reason": {
+            "title": "Assessment reason",
+            "description": "Reason for assessment",
+            "examples": ["Routine", "Hospital"],
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "description": "Current status of assessment",
+            "type": "string"
+          },
+          "outcome": {
+            "title": "Outcome",
+            "description": "Outcome of the assessment",
+            "type": "string"
+          },
+          "typ": {
+            "title": "Assessment type",
+            "description": "The type of the assessment",
+            "examples": ["Individual", "Carer"],
+            "type": "string"
+          },
+          "notes": {
+            "title": "Assessment notes",
+            "description": "Free text notes on assessment",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "services": {
+      "title": "Services",
+      "type": "array",
+      "description": "Services provided for this client",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Service ID",
+            "description": "Unique ID for this service",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "description": "Name of the provider of this service",
+            "type": "string"
+          },
+          "rateUnit": {
+            "title": "Rate unit",
+            "description": "The units used for the rate for this service",
+            "examples": ["Per meal", "Per hour"],
+            "type": "string"
+          },
+          "plannedStart": {
+            "title": "Planned start",
+            "description": "Planned date of service start",
+            "type": "number"
+          },
+          "startedOn": {
+            "title": "Started on",
+            "description": "Date service was started",
+            "type": "number"
+          },
+          "plannedEnd": {
+            "title": "Planned end",
+            "description": "Planned date of service end",
+            "type": "number"
+          },
+          "endedOn": {
+            "title": "Ended on",
+            "description": "Date service was ended",
+            "type": "number"
+          },
+          "startReason": {
+            "title": "Start reason",
+            "description": "Reason for service being provisioned",
+            "type": "string"
+          },
+          "endReason": {
+            "title": "End reason",
+            "description": "Reason service was discontinued",
+            "type": "string"
+          },
+          "weeklyCost": {
+            "title": "Weekly cost",
+            "description": "The total weekly cost of the service",
+            "type": "number"
+          },
+          "purchasingTeam": {
+            "title": "Purchasing team",
+            "description": "Team responsible for provisioning service",
+            "type": "string"
+          },
+          "totalUnits": {
+            "title": "Total units",
+            "description": "The total number of units delivered weekly for this service",
+            "type": "number"
+          },
+          "rate": {
+            "title": "Rate",
+            "description": "The rate per unit delivered for this service",
+            "type": "number"
+          },
+          "doubleUp": {
+            "title": "Double up",
+            "description": "Indicates whether this service requires two carers",
+            "type": "boolean"
+          },
+          "unitsDelivered": {
+            "title": "Units delivered",
+            "description": "The number of units of this service delivered to client on a weekly basis. This may differ from total units in the event of a double up",
+            "type": "number"
+          },
+          "hoursPerDay": {
+            "title": "Hours per day",
+            "description": "Pattern of hours across the week, starting with monday",
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "typ": {
+            "title": "Service Type",
+            "description": "The type of this service provision",
+            "examples": ["Nursing Care", "Lifeline", "Community Meals"],
+            "type": "string"
+          },
+          "psr": {
+            "title": "Primary Support Reason",
+            "description": "Primary reason for the provision of the service",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "carePlans": {
+      "title": "Care Plans",
+      "type": "array",
+      "description": "Care and support plans for this client",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Care Plan ID",
+            "description": "Unique id for this care plan",
+            "type": "string"
+          },
+          "startedOn": {
+            "title:": "Started on",
+            "description": "Date care plan started on in milliseconds since the Unix epoch",
+            "type": "number"
+          },
+          "completedOn": {
+            "title": "Completed on",
+            "description": "Date care plan completed on in milliseconds since the Unix epoch",
+            "type": "number"
+          },
+          "owner": {
+            "title": "Owner",
+            "description": "The identity of the assigned team member",
+            "type": "string"
+          },
+          "team": {
+            "title": "Team",
+            "description": "The identity of the team assigned",
+            "type": "string"
+          },
+          "status": {
+            "title": "Care plan status",
+            "description": "Current status of this care plan",
+            "type": "string"
+          },
+          "typ": {
+            "title": "Care plan type",
+            "description": "The type of this care plan",
+            "examples": ["Individual"],
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reviews": {
+      "title": "Reviews",
+      "type": "array",
+      "description": "Review data for this client",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Review ID",
+            "description": "Unique id for this review",
+            "type": "string"
+          },
+          "startedOn": {
+            "title": "Start Date",
+            "description": "Start date of the review",
+            "type": "number"
+          },
+          "completedOn": {
+            "title": "Completion Date",
+            "description": "Date review was completed",
+            "type": "number"
+          },
+          "owner": {
+            "title": "Owner",
+            "description": "The identity of the assigned team member",
+            "type": "string"
+          },
+          "team": {
+            "title": "Team",
+            "description": "The identity of the team assigned",
+            "type": "string"
+          },
+          "status": {
+            "title": "Review status",
+            "description": "Current status of this review",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Review reason",
+            "description": "Reason for review",
+            "examples": ["Scheduled", "Unplanned"],
+            "type": "string"
+          },
+          "metrics": {
+            "title": "Metrics",
+            "description": "Metrics such as wellbeing scores recorded at review",
+            "items": {
+              "type": "object",
+              "metric": {
+                "title": "Wellbeing metric",
+                "description": "The metric to which this score pertains",
+                "type": "string"
+              },
+              "baseline": {
+                "title": "Baseline score",
+                "description": "The initial baseline score for this metric",
+                "type": "number"
+              },
+              "score": {
+                "title": "Score",
+                "description": "The current score for this metric",
+                "type": "number"
+              },
+              "delta": {
+                "title": "Score delta",
+                "description": "The delta between baseline and current score for this metric",
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "title": "Artifacts",
+      "type": "array",
+      "description": "Ad hoc information associated with this client",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "description": "Descriptive key for this artifact",
+            "type": "string"
+          },
+          "value": {
+            "description": "Value for this artifact",
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}
